@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARDERC2 | Official Server</title>
+    
+    <link rel="icon" type="image/jpeg" href="harderc.jpg">
+
+    <style>
+        :root {
+            --main-blue: #00d4ff;
+            --dark-bg: #050507;
+            --accent-glow: rgba(0, 212, 255, 0.5);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            color: #fff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Главный экран с фоном */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), 
+                        url('harderc.jpg') center/cover no-repeat;
+            text-align: center;
+            border-bottom: 3px solid var(--main-blue);
+        }
+
+        /* Эффект свечения для текста */
+        h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 15px;
+            color: #fff;
+            text-shadow: 0 0 20px var(--main-blue), 0 0 40px var(--main-blue);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            color: var(--main-blue);
+            text-transform: uppercase;
+        }
+
+        /* Блок с IP и Версией */
+        .server-info {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--main-blue);
+            padding: 20px 40px;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .ip-address {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: var(--main-blue);
+            color: #000;
+            padding: 5px 15px;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+
+        /* Кнопки */
+        .btn-group {
+            margin-top: 40px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 15px 35px;
+            border: 2px solid var(--main-blue);
+            color: var(--main-blue);
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.4s;
+            margin: 0 10px;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--main-blue);
+            color: #000;
+            box-shadow: 0 0 25px var(--accent-glow);
+            cursor: pointer;
+        }
+
+        /* Копирование по клику */
+        .copy-hint {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Анимация мигания (как электричество) */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+            95% { opacity: 0.9; }
+        }
+
+        .hero h1 {
+            animation: flicker 3s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="subtitle">Welcome to the grid</div>
+        <h1>HARDERC2</h1>
+        
+        <div class="server-info">
+            <span class="ip-address" id="serverIp">hardrec2.aternos.me</span>
+            <div class="version-badge">ВЕРСИЯ: 1.21.11</div>
+            <div class="copy-hint">Нажми на IP, чтобы скопировать</div>
+        </div>
+
+        <div class="btn-group">
+            <a href="https://t.me/hrdrc2" target="_blank" class="btn">Telegram</a>
+          <a href="https://nuts.fillout.com/harderc2-whitelist" target="_blank" class="btn">Whitelist Apply</a>
+        </div>
+    </section>
+
+    <script>
+        // Функция для копирования IP при клике
+        document.getElementById('serverIp').onclick = function() {
+            const ip = this.innerText;
+            navigator.clipboard.writeText(ip).then(() => {
+                const originalText = this.innerText;
+                this.innerText = "СКОПИРОВАНО!";
+                this.style.color = "#00ff00";
+                setTimeout(() => {
+                    this.innerText = originalText;
+                    this.style.color = "#fff";
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
